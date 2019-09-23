@@ -1,0 +1,21 @@
+spring:
+    jpa:
+        database: MYSQL
+        hibernate:
+            ddl-auto: false
+            naming:
+                physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        properties:
+            hibernate:
+                show_sql: true
+                use_sql_comments: true
+                format_sql: true
+                hbm2ddl.auto: none
+    datasource:
+        url: jdbc:mysql://localhost:3307/cars?useSSL=false&allowPublicKeyRetrieval=true
+        username: root
+        password: carslocal123
+        driver-class-name: com.mysql.jdbc.Driver
+        
+    liquibase:
+        change-log: classpath:/db/changelog/master.xml

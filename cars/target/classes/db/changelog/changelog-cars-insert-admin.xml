@@ -1,0 +1,20 @@
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet author="mfida" id="5">
+		<insert tableName="user">
+			<column name="user_name" value="admin2" />
+			<column name="email" value="admin2@admin" />
+			<column name="password" value="admin" />
+		</insert>
+		<insert tableName="user_permit">
+			<column name="user_id" value="2" />
+			<column name="permit_id" value="3" />
+		</insert>
+	</changeSet>
+
+</databaseChangeLog>

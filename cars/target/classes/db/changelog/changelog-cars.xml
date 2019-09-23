@@ -1,0 +1,131 @@
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet id="1" author="mfida">
+
+		<createTable tableName="car_type">
+			<column name="id" type="int" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="name" type="varchar(45)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+
+		<createTable tableName="car">
+			<column name="id" type="int" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="name" type="varchar(45)">
+				<constraints nullable="false" />
+			</column>
+			<column name="car_type_id" type="int">
+				<constraints nullable="false"
+					foreignKeyName="fk_car_car_type" references="car_type(id)" />
+			</column>
+		</createTable>
+
+		<createTable tableName="driver">
+			<column name="id" type="int" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="name" type="varchar(45)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+
+		<createTable tableName="permit">
+			<column name="id" type="int" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="name" type="varchar(50)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+
+		<createTable tableName="session">
+			<column name="id" type="int" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="name" type="varchar(45)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+
+		<createTable tableName="track">
+			<column name="id" type="int" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="name" type="varchar(45)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+
+		<createTable tableName="race">
+			<column name="id" type="int" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="session_id" type="int">
+				<constraints nullable="false"
+					foreignKeyName="fk_race_session" references="session(id)" />
+			</column>
+			<column name="track_id" type="int">
+				<constraints nullable="false"
+					foreignKeyName="fk_race_track" references="track(id)" />
+			</column>
+		</createTable>
+
+		<createTable tableName="race_result">
+			<column name="id" type="int" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="time" type="float" />
+			<column name="race_id" type="int">
+				<constraints nullable="false"
+					foreignKeyName="fk_race_result_race" references="race(id)" />
+			</column>
+			<column name="driver_id" type="int">
+				<constraints nullable="false"
+					foreignKeyName="fk_race_result_driver" references="driver(id)" />
+			</column>
+			<column name="car_id" type="int">
+				<constraints nullable="false"
+					foreignKeyName="fk_race_result_track" references="car(id)" />
+			</column>
+		</createTable>
+
+		<createTable tableName="user">
+			<column name="id" type="int" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="user_name" type="varchar(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="email" type="varchar(50)">
+				<constraints nullable="false" />
+			</column>
+			<column name="password" type="varchar(255)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+
+		<createTable tableName="user_permit">
+			<column name="id" type="int" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="user_id" type="int">
+				<constraints nullable="false"
+					foreignKeyName="user_permit_ibfk_2" references="user(id)" />
+			</column>
+			<column name="permit_id" type="int">
+				<constraints nullable="false"
+					foreignKeyName="user_permit_ibfk_1" references="permit(id)" />
+			</column>
+		</createTable>
+	</changeSet>
+
+</databaseChangeLog>
